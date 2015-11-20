@@ -1,0 +1,33 @@
+{% extends "free_board.html" %}
+
+<title>{% block title %}Free Board - Detail View{% endblock %}</title>
+
+{% block content %}
+
+<br>
+<a class="btn btn-default" href="/board/" role="button">Back</a>
+<br>
+<br>
+
+<p class = "text-right">업데이트 날짜:{{ pop.board_date }}</p>
+
+<div class="panel panel-info">
+	<div class="panel-heading"><h4>{{ pop.title }}</h4></div>
+	<div class="panel-body">
+		<p class = "text-left">글쓴이: {{ pop.writer }}</p>
+		<br>
+		<p>내용:
+		<br>
+		{{ pop.board_contents }}
+		</p>
+  </div>
+</div>
+{% if prev_id > 0 %}
+	<a class="btn btn-default pull-left" href="/board/{{ prev_id }}" role="button">이전글</a>
+{% endif %}
+{% if last_id != next_id %}
+<a class="btn btn-default pull-left" href="/board/{{ next_id }}" role="button">다음글</a>
+{% endif %}
+<a class="btn btn-default pull-right" href="/board/write" role="button">글쓰기</a>
+
+{% endblock %}

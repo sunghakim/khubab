@@ -1,0 +1,22 @@
+{% extends "free_board.html" %}
+
+<title>{% block title %}Free Board - Write Contents{% endblock %}</title>
+
+{% block content %}
+<h2>글쓰기</h2>
+<br>
+<form name=writeform method="post" action="/board/write_board/" >
+	{% csrf_token %}
+	<h4>ID :</h4>
+	<input type="text" class="form-control" name = _writer placeholder="Writer's name">
+
+	<h4>제목 :</h4>
+	<input type="text" class="form-control" name = _title placeholder="input title">
+
+	<h4>내용 :</h4>
+	<textarea class="form-control" rows="7" name = _board_contents placeholder="Write your Question or Opinion"></textarea>
+
+	<button id = "submit_btn" type="submit" class="btn btn-default pull-right">게시하기</button>
+ </form>
+
+{% endblock %}

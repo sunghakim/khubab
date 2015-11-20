@@ -1,0 +1,8 @@
+body {
+
+
+}
+#header{ padding-top: 20px;}
+.content{ overflow : auto;}
+.footer{ padding : 10px; }
+.img-responsive{ height : 153px; width: 205px;}

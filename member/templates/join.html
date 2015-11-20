@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+<title>{% block title %}경희 밥집 회원 가입{% endblock %}</title>
+
+{% block content %}
+{{super}}
+<div style="width:60%">
+<form class="form-horizontal" method="post" action="/member/join_update/">
+  	{% csrf_token %}
+  	<div class="form-group">
+    <label for="member_email" class="col-md-2 col-sm-3 control-label">Email</label>
+    <div class="col-md-10 col-sm-9">
+      <input type="email" class="form-control" name="member_email" placeholder="Email을 입려하세요">
+    </div>
+  	</div>
+
+  	<div class="form-group">
+	<label for="member_id" class="col-md-2 col-sm-3 control-label">아이디</label>
+    <div class="col-md-10 col-sm-9">
+      <input type="text" class="form-control" name="member_id" placeholder="아이디를 입력하세요">
+    </div>
+	</div>
+	
+
+	<div class="form-group">
+	<label for="member_nick" class="col-md-2 col-sm-3 control-label">낙네임</label>
+    <div class="col-md-10 col-sm-9">
+      <input type="text" class="form-control" name="member_nick" placeholder="닉네임을 입력하세요">
+    </div>
+	</div>
+
+	<div class="form-group">
+    <label for="member_passwd" class="col-md-2 col-sm-3 control-label">비밀번호</label>
+    <div class="col-md-10 col-sm-9">
+      <input type="password" class="form-control" name="member_passwd" placeholder="비밀번호를 입력하세요">
+    </div>
+	</div>
+
+	
+	<button type="submit" class="btn btn-primary">가입하기</button>
+ </form>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset = "utf-8"> <!-- 유니코드로 언어 입력확인 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+{% load staticfiles %}
+<link rel = "stylesheet" type = "text/css" href = "{% static "css/bootstrap.css" %}" />
+<link rel = "stylesheet" type = "text/css" href = "{% static "css/mystyle.css" %}" />
+
+<title> {% block title %} Bab Site {% endblock %} </title>
+<script src = "{% static "js/jquery-1.11.3.min.js" %}"></script>
+<script src = "{% static "js/bootstrap.js" %}"></script>
+<script type = "text/javascript">
+$(document).ready(function(){
+
+	var path = window.location.pathname;
+
+	if(/bab/.test(path))
+		$('#tab_bab').addClass('active');
+	else if(/board/.test(path))
+		$('#tab_board').addClass('active');
+	else
+		$('#tab_home').addClass('active');
+
+})
+</script>
+</head>
+
+<body>
+	<div class = "container">
+		<div id = "header">
+			{% block header %}
+			{{ user.username }}
+			
+			<ul class="nav nav-tabs">
+  				<li role="presentation" id = "tab_home"><a href="/">Home</a></li>
+  				<li role="presentation" id = "tab_bab"><a href="/bab/">Bab</a></li>
+  				<li role="presentation" id = "tab_board"><a href="/board/">Free Board</a></li>
+			</ul>
+			{% endblock %}
+		</div>
+
+		<div class = "content">
+			{% block content %}
+			{% endblock %}
+		</div>
+
+		<div class = "footer">
+			{% block footer %}
+kimsungha ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+			{% endblock %}
+		</div>
+	</div>
+</body>
+</html>

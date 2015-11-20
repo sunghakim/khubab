@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+
+
+<title>{% block title %}Bab - {{ select.bab_name }}{% endblock %}</title>
+
+{% block content %}
+{{ block.super }}
+<br>
+<a class="btn btn-default" href="/bab/" role="button">Back</a>
+<br>
+<br>
+
+<div class="panel panel-default">
+	<div class="panel-heading"><h4>name:{{ select.bab_name }}</h4>
+			
+		{% if my_point %}
+			<div style="text-align:right">
+				My Point : {{my_point}}
+				<br>
+				Average Point : {{average}}
+			</div>
+		{% else %}
+			<div style="text-align:right">
+			<form name = pointform method = "post" action="/bab/point/{{ select.pk }}/">
+				{% csrf_token %}
+			<select name = _Spoint>
+				<option value="5">5</option>
+  				<option value="4">4</option>
+  				<option value="3">3</option>
+  				<option value="2">2</option>
+  				<option value="1">1</option>
+			</select>
+			<button class="btn btn-default" type = "submit" role="button">별점주기</button>
+			</form>
+			<br>
+				Average Point : {{average}}
+
+			<p>별점 수정은 불가능합니다.</p>
+			</div>
+		{% endif %}
+
+	</div>
+
+	<div class="panel-body">
+		<h4>image:</h4>
+		<img src="/media/{{ select.bab_img }}" class="img-responsive" alt="Responsive image">
+		<br>
+
+		<h4>comment:</h4>
+		<br>
+		<h4>{{ select.bab_contents }}</h4>
+	</div>
+</div>
+
+
+
+{% endblock %}

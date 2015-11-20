@@ -1,0 +1,58 @@
+
+{% extends "base.html" %}
+
+
+<title>{% block title %}Free Board{% endblock %}</title>
+
+{% block content %}
+{{ block.super }}
+
+<h1>자유게시판</h1>
+<br>
+<br>
+
+{% load endless %}
+{% paginate list_final %}  
+<table class="table">
+	<tr>
+		<td>number</td>
+		<td>title</td>
+		<td>member name</td>
+		<td>date</td>
+	</tr>
+	{% for amount in list_final %}
+	<tr>
+		<td>{{ amount.pk }}</td>
+		<td><a href = "/board/{{ amount.pk }}/">{{ amount.title }}</a></td>
+		<td>{{ amount.writer }}</td>
+		<td>{{ amount.board_date }}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+<button id = "write_btn" class="btn btn-default pull-right">write</button>
+
+<script type="text/javascript">
+	$("#write_btn").click(function(){
+		$(location).attr('href','/board/write/');
+	});
+</script>
+
+{% get_pages %}
+<div style="text-align:center;">
+	<ul class = "pagination">
+		<li>{{pages.previous}}</li>
+		{% for page in pages %}
+			{% if pages.current.number == page.number %}
+				<li class="active" id="page_{{page.number}}"><a href = "?page={{page.number}}">{{ page.number }}</a></li>
+			{% else %}
+				<li id="page_{{page.number}}"><a href = "?page={{page.number}}">{{ page.number }}</a></li>
+			{% endif %}
+		{% endfor %}
+		<li>{{pages.next}}</li>
+	</ul>
+</div>
+
+
+{% endblock %}
+
